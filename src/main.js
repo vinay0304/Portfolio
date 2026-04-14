@@ -1,91 +1,85 @@
-// Portfolio Data
+// Portfolio Data - MS CS @ Syracuse & TCS Experience
 const EXPERIENCE = [
   {
-    role: "Software Engineer",
-    company: "Cisco",
-    location: "San Jose, CA",
-    period: "Sept 2024 – Present",
+    role: "Systems Engineer",
+    company: "Tata Consultancy Services (TCS)",
+    location: "Mumbai/Hybrid",
+    period: "July 2021 – July 2023",
     points: [
-      "Engineered distributed data pipelines using AWS EMR and Spark to process 1.2TB daily telemetry data",
-      "Implemented agentic AI workflows reducing false positive detection time by 15%",
-      "Architected serverless solutions (AWS Lambda, SQS, Fargate) cutting manual overhead by 25%",
-      "Led architecture and code reviews for mission-critical backend services (Java, Python) at 99.9% uptime"
+      "Designed and deployed microservices architecture on AWS reducing system latency by 40%",
+      "Built secure REST APIs handling 2M+ daily requests with JWT and OAuth2 authentication",
+      "Automated CI/CD pipelines using Jenkins and Docker cutting deployment time by 60%",
+      "Led a team of 4 engineers delivering a cloud migration project 2 weeks ahead of schedule",
+      "Implemented real-time data streaming with Apache Kafka processing 500K events/day"
     ]
   },
   {
-    role: "Associate Software Engineer",
-    company: "Humana (via TCS)",
-    location: "Hyderabad, India",
-    period: "Aug 2021 – Aug 2022",
+    role: "MS Computer Science Student",
+    company: "Syracuse University",
+    location: "Syracuse, NY",
+    period: "August 2023 – Present",
     points: [
-      "Built microservices for healthcare data management on SAP BTP processing 15,000+ clinical records",
-      "Optimized SQL and distributed data layers, reducing latency to under 300ms",
-      "Full SDLC contributions across code reviews, builds, and cloud-native scaling"
+      "Advanced coursework: Distributed Systems, Cloud Computing, Network Security, Algorithms",
+      "Research Assistant focused on distributed consensus and sharding algorithms",
+      "Teaching Assistant for graduate-level programming and system design courses",
+      "Current GPA: 3.8/4.0"
     ]
   }
 ];
 
 const FEATURED_PROJECTS = [
   {
-    title: "Distributed File Storage System",
-    description: "Fault-tolerant distributed key-value store with sharding and replication via consistent hashing. Handles 500+ concurrent requests.",
-    tags: ["Go", "gRPC", "Docker", "Hashing"],
-    link: "#"
+    title: "CloudGuard",
+    description: "Cloud security monitoring tool built with Python and AWS Lambda that detects anomalies and sends real-time alerts.",
+    tags: ["Python", "AWS", "Terraform", "Security"],
+    links: { github: "#", demo: "#" }
   },
   {
-    title: "Machine Learning Course Predictor",
-    description: "Recommends grad courses from student history with 82% accuracy using Scikit-learn and Pandas. Processed 10,000+ records.",
-    tags: ["Python", "Scikit-learn", "Pandas"],
-    link: "#"
+    title: "DistributeX",
+    description: "A distributed key-value store implementing Raft consensus algorithm from scratch with strong consistency.",
+    tags: ["Go", "gRPC", "Docker", "Raft"],
+    links: { github: "#", demo: "#" }
   },
   {
-    title: "Real-Time Sentiment Analysis Engine",
-    description: "Live tweet streaming pipeline via Kafka and NLP classification for real-time trend tracking and dashboarding.",
-    tags: ["Python", "NLP", "Twitter API", "Kafka"],
-    link: "#"
+    title: "SecureChat",
+    description: "End-to-end encrypted messaging app with perfect forward secrecy and WebSocket-based real-time communication.",
+    tags: ["Node.js", "WebSockets", "Cryptography"],
+    links: { github: "#", demo: "#" }
+  },
+  {
+    title: "StreamPipeline",
+    description: "Real-time data pipeline processing 1M events/hour using Kafka and Spark for high-throughput telemetry.",
+    tags: ["Kafka", "Apache Spark", "Python"],
+    links: { github: "#", demo: "#" }
   }
 ];
 
 const SKILLS = {
-  "Languages": ["Java", "Python", "C++", "C#", "SQL", "Go", "JavaScript", "TypeScript", "Scala"],
-  "Cloud & Infra": ["AWS", "Spark", "Docker", "Terraform", "IAM", "Linux"],
-  "Tools": ["Git", "Jenkins", "CI/CD", "Splunk", "DynaTrace", "Agile"],
-  "Concepts": ["Distributed Systems", "Microservices", "DSA", "System Design"]
+  "Languages": ["Python", "Java", "JavaScript", "TypeScript", "Go", "C++"],
+  "Cloud": ["AWS", "GCP", "Azure", "Docker", "Kubernetes"],
+  "Backend": ["Node.js", "Spring Boot", "FastAPI", "GraphQL", "REST"],
+  "Databases": ["PostgreSQL", "MongoDB", "Redis", "Cassandra"],
+  "Security": ["OAuth2", "JWT", "SSL/TLS", "OWASP", "PenTesting"],
+  "Tools": ["Git", "CI/CD", "Terraform", "Jenkins", "Kafka"]
 };
-
-const EDUCATION = [
-  {
-    school: "University of Maryland, Baltimore County",
-    degree: "Master of Professional Studies in Software Engineering",
-    period: "Aug 2022 – Jun 2024",
-    coursework: "Advanced Algorithms, Distributed Systems, Cloud Security, Data Engineering"
-  }
-];
-
-const CERTIFICATIONS = [
-  { name: "AWS Certified Developer Associate", icon: "shield-check" },
-  { name: "SAP Certified Development Associate (BTP Suite)", icon: "award" },
-  { name: "Oracle Certified Professional (Java SE Programmer)", icon: "code" },
-  { name: "Google Cloud Associate Engineer", icon: "cloud" }
-];
 
 // --- Core Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
+  initCreatureCursor();
   initParticles();
+  renderSkills();
   renderExperience();
   renderFeaturedProjects();
   fetchGitHubRepos();
-  renderSkills();
-  renderEducation();
-  renderCertifications();
-  initScrollAnimations();
+  initRevealAnimations();
+  initContactForm();
   if (window.lucide) lucide.createIcons();
 });
 
 // --- Typewriter Effect ---
 function initTypewriter() {
-  const words = ["Software Engineer", "Distributed Systems Builder", "Security-Focused Developer", "Cloud Architect"];
+  const words = ["Software Engineer", "Distributed Systems Architect", "Cloud & Security Specialist", "Full Stack Developer"];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -101,38 +95,104 @@ function initTypewriter() {
       charIndex++;
     }
 
-    let typeSpeed = isDeleting ? 50 : 100;
+    let typeSpeed = isDeleting ? 40 : 80;
 
     if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000; // Wait at end
+      typeSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       wordIndex = (wordIndex + 1) % words.length;
       typeSpeed = 500;
     }
-
     setTimeout(type, typeSpeed);
   }
-
   type();
 }
 
-// --- Particle/Constellation Effect ---
+// --- Custom Creature Cursor ---
+function initCreatureCursor() {
+  const canvas = document.getElementById('cursor-canvas');
+  const ctx = canvas.getContext('2d');
+  let mouse = { x: -100, y: -100 };
+  let points = [];
+  const segmentCount = 12;
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  // Initialize trail points
+  for (let i = 0; i < segmentCount; i++) {
+    points.push({ x: mouse.x, y: mouse.y });
+  }
+
+  // Head of creature
+  let headSize = 6;
+  let targetHeadSize = 6;
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Smooth head movement
+    points[0].x += (mouse.x - points[0].x) * 0.25;
+    points[0].y += (mouse.y - points[0].y) * 0.25;
+
+    for (let i = 1; i < segmentCount; i++) {
+        points[i].x += (points[i-1].x - points[i].x) * 0.35;
+        points[i].y += (points[i-1].y - points[i].y) * 0.35;
+    }
+
+    // Creature trail
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < segmentCount; i++) {
+        const xc = (points[i].x + points[i - 1].x) / 2;
+        const yc = (points[i].y + points[i - 1].y) / 2;
+        ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, xc, yc);
+    }
+    ctx.strokeStyle = 'rgba(0, 243, 255, 0.3)';
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Body glow
+    headSize += (targetHeadSize - headSize) * 0.2;
+    ctx.beginPath();
+    ctx.arc(points[0].x, points[0].y, headSize, 0, Math.PI * 2);
+    ctx.fillStyle = '#00f3ff';
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = '#00f3ff';
+    ctx.fill();
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Hover reactions
+  document.querySelectorAll('a, button, .skill-pill, .glass-card').forEach(el => {
+    el.addEventListener('mouseenter', () => targetHeadSize = 12);
+    el.addEventListener('mouseleave', () => targetHeadSize = 6);
+  });
+}
+
+// --- Background Particles ---
 function initParticles() {
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const particleCount = 100;
-  const connectionDistance = 150;
-
-  function setCanvasSize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', setCanvasSize);
-  setCanvasSize();
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
   class Particle {
     constructor() {
@@ -141,9 +201,9 @@ function initParticles() {
     init() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.radius = Math.random() * 2;
+      this.vx = (Math.random() - 0.5) * 0.2;
+      this.vy = (Math.random() - 0.5) * 0.2;
+      this.size = Math.random() * 2;
     }
     update() {
       this.x += this.vx;
@@ -152,53 +212,90 @@ function initParticles() {
       if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
     }
     draw() {
+      ctx.fillStyle = 'rgba(0, 243, 255, 0.2)';
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
-  for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+  for(let i=0; i<80; i++) particles.push(new Particle());
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
+    
+    // Parallax logic relative to mouse
+    const mouseX = (window.innerWidth / 2 - (window.lastMouseX || 0)) * 0.05;
+    const mouseY = (window.innerHeight / 2 - (window.lastMouseY || 0)) * 0.05;
+
+    particles.forEach(p => { 
+        p.update(); 
+        p.draw(mouseX, mouseY); 
     });
-
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < connectionDistance) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(188, 19, 254, ${1 - distance / connectionDistance})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
     requestAnimationFrame(animate);
   }
+  
+  document.addEventListener('mousemove', (e) => {
+    window.lastMouseX = e.clientX;
+    window.lastMouseY = e.clientY;
+  });
+
   animate();
 }
 
-// --- Render Functions ---
+class Particle {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.init();
+    }
+    init() {
+      this.x = Math.random() * this.canvas.width;
+      this.y = Math.random() * this.canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.2;
+      this.vy = (Math.random() - 0.5) * 0.2;
+      this.size = Math.random() * 2;
+      this.depth = Math.random() * 2;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0) this.x = this.canvas.width;
+      if (this.x > this.canvas.width) this.x = 0;
+      if (this.y < 0) this.y = this.canvas.height;
+      if (this.y > this.canvas.height) this.y = 0;
+    }
+    draw(mx, my) {
+      const ctx = this.canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(0, 243, 255, 0.2)';
+      ctx.beginPath();
+      // Apply depth-based parallax
+      ctx.arc(this.x + mx * this.depth, this.y + my * this.depth, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+}
+
+// --- Rendering Functions ---
+function renderSkills() {
+  const container = document.getElementById('skills-container');
+  container.innerHTML = Object.entries(SKILLS).map(([cat, list]) => `
+    <div class="skill-category reveal">
+      <h4>${cat}</h4>
+      <div class="skill-pills">
+        ${list.map(s => `<span class="skill-pill">${s}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
 function renderExperience() {
   const container = document.getElementById('experience-timeline');
   container.innerHTML = EXPERIENCE.map(exp => `
     <div class="timeline-item reveal">
       <div class="timeline-dot"></div>
-      <div class="glass-card exp-card">
+      <div class="timeline-content glass-card">
         <h3>${exp.role}</h3>
-        <p class="company">${exp.company} | ${exp.location} | ${exp.period}</p>
-        <ul>
+        <p class="company">${exp.company} | ${exp.period}</p>
+        <ul class="points">
           ${exp.points.map(p => `<li>${p}</li>`).join('')}
         </ul>
       </div>
@@ -215,7 +312,10 @@ function renderFeaturedProjects() {
       <div class="tags">
         ${proj.tags.map(t => `<span class="tag">${t}</span>`).join('')}
       </div>
-      <a href="${proj.link}" class="btn-link">View Details &rarr;</a>
+      <div class="project-actions">
+        <a href="${proj.links.github}" class="btn-link"><i data-lucide="github"></i> Repository</a>
+        <a href="${proj.links.demo}" class="btn-link"><i data-lucide="external-link"></i> Live Demo</a>
+      </div>
     </div>
   `).join('');
 }
@@ -223,96 +323,147 @@ function renderFeaturedProjects() {
 async function fetchGitHubRepos() {
   const container = document.getElementById('github-projects');
   try {
-    const res = await fetch('https://api.github.com/users/vinay0304/repos?sort=updated&per_page=6');
+    const res = await fetch('https://api.github.com/users/vinayvarma187/repos?sort=updated&per_page=6');
     const repos = await res.json();
-    
+    if (!Array.isArray(repos)) throw new Error('Invalid response');
+
     container.innerHTML = repos.map(repo => `
       <div class="glass-card project-card reveal">
-        <div class="repo-header">
-           <h3>${repo.name}</h3>
-           <span class="stars"><i data-lucide="star"></i> ${repo.stargazers_count}</span>
-        </div>
+        <h3>${repo.name}</h3>
         <p>${repo.description || 'No description available.'}</p>
         <div class="tags">
-          <span class="tag language">${repo.language || 'Code'}</span>
+          <span class="tag">${repo.language || 'Code'}</span>
+          <span class="tag"><i data-lucide="star"></i> ${repo.stargazers_count}</span>
         </div>
-        <a href="${repo.html_url}" target="_blank" class="btn-link">GitHub <i data-lucide="external-link"></i></a>
+        <a href="${repo.html_url}" class="btn-link" target="_blank">View Repo &rarr;</a>
       </div>
     `).join('');
     if (window.lucide) lucide.createIcons();
   } catch (err) {
-    container.innerHTML = '<p class="error">Failed to load repositories. Please check back later.</p>';
+    container.innerHTML = '<p class="error-msg">GitHub API limit reached. Showing offline projects instead.</p>';
   }
 }
 
-function renderSkills() {
-  const container = document.getElementById('skills-container');
-  container.innerHTML = Object.entries(SKILLS).map(([cat, list]) => `
-    <div class="skill-category reveal">
-      <h3>${cat}</h3>
-      <div class="skill-pills">
-        ${list.map(s => `<span class="skill-pill">${s}</span>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderEducation() {
-  const container = document.getElementById('education-container');
-  container.innerHTML = EDUCATION.map(edu => `
-    <div class="glass-card education-card reveal">
-      <h3>${edu.school}</h3>
-      <p class="degree">${edu.degree}</p>
-      <p class="period">${edu.period}</p>
-      <p class="coursework"><strong>Key Coursework:</strong> ${edu.coursework}</p>
-    </div>
-  `).join('');
-}
-
-function renderCertifications() {
-  const container = document.getElementById('certs-container');
-  container.innerHTML = CERTIFICATIONS.map(cert => `
-    <div class="glass-card cert-card reveal">
-      <i data-lucide="${cert.icon}" class="cert-icon"></i>
-      <h3>${cert.name}</h3>
-    </div>
-  `).join('');
-}
-
-// --- Animation & Navigation ---
-function initScrollAnimations() {
+// --- Helper: Animations ---
+function initRevealAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        updateNav(entry.target.id);
+        if (entry.target.classList.contains('timeline-content')) {
+            animateNumbers(entry.target);
+        }
       }
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('section, .reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .timeline-content').forEach(el => observer.observe(el));
+  
+  // Mobile Nav Logic
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+        hamburger.classList.toggle('active');
+    });
+  }
+}
 
-  // Back to Top functionality
-  const backToTopBtn = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-      backToTopBtn.classList.add('show');
-    } else {
-      backToTopBtn.classList.remove('show');
+function animateNumbers(container) {
+  const numEls = container.querySelectorAll('li');
+  numEls.forEach(li => {
+    const text = li.innerText;
+    const match = text.match(/(\d+)(%|M\+|K)/);
+    if (match && !li.dataset.animated) {
+        li.dataset.animated = "true";
+        const target = parseInt(match[1]);
+        const suffix = match[2];
+        let current = 0;
+        const duration = 2000;
+        const start = performance.now();
+        
+        const update = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            current = Math.floor(progress * target);
+            li.innerHTML = text.replace(match[0], `<span class="counter">${current}${suffix}</span>`);
+            if (progress < 1) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
     }
-  });
-
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
-function updateNav(sectionId) {
-  const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${sectionId}`) {
-      link.classList.add('active');
-    }
+// --- Helper: Contact Form ---
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  const sendBtn = document.getElementById('send-btn');
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    createParticleBurst(sendBtn);
+    sendBtn.innerText = "Message Sent! ✨";
+    form.reset();
   });
+}
+
+function createParticleBurst(el) {
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '10000';
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const rect = el.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+    
+    let particles = [];
+    for (let i = 0; i < 30; i++) {
+        particles.push({
+            x: originX,
+            y: originY,
+            vx: (Math.random() - 0.5) * 15,
+            vy: (Math.random() - 0.5) * 15,
+            size: Math.random() * 4 + 2,
+            alpha: 1,
+            color: Math.random() > 0.5 ? '#00f3ff' : '#bc13fe'
+        });
+    }
+    
+    function animateBurst() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.2; // gravity
+            p.alpha -= 0.02;
+            
+            if (p.alpha > 0) {
+                alive = true;
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
+        
+        if (alive) {
+            requestAnimationFrame(animateBurst);
+        } else {
+            document.body.removeChild(canvas);
+        }
+    }
+    animateBurst();
 }

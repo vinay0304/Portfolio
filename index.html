@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinay Varma Pericherla | Software Engineer</title>
-  <meta name="description" content="Personal portfolio of Vinay Varma Pericherla - Software Engineer specializing in distributed systems, cloud architecture, and security.">
+  <title>Vinay Varma Pericherla | Distributed Systems & Cloud Security</title>
+  <meta name="description" content="Portfolio of Vinay Varma Pericherla - MS CS at Syracuse University. Expert in distributed systems, cloud architecture, and security.">
   <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
+  <!-- Custom Creature Cursor -->
+  <div id="creature-cursor-container">
+    <canvas id="cursor-canvas"></canvas>
+  </div>
+
   <!-- Navigation -->
   <nav class="navbar">
-    <ul class="nav-links">
-      <li><a href="#hero" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-container">
+      <a href="#hero" class="logo">VVP<span class="glow-dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </nav>
 
   <main>
@@ -25,36 +34,51 @@
     <section id="hero" class="hero-section">
       <canvas id="particle-canvas"></canvas>
       <div class="container hero-content">
-        <h1 class="reveal">Vinay Varma <span class="gradient-text">Pericherla</span></h1>
-        <div class="tagline-container reveal">
+        <h1 class="reveal stagger-1">Vinay Varma <span class="gradient-text">Pericherla</span></h1>
+        <h2 class="subtitle reveal stagger-2">MS Computer Science @ Syracuse University</h2>
+        <div class="tagline-container reveal stagger-3">
           <span id="typewriter" class="typewriter-text"></span><span class="cursor">|</span>
         </div>
-        <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
+        <div class="hero-actions reveal stagger-4">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
           <a href="#" class="btn btn-outline" id="resume-btn">Download Resume</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+        <div class="social-links-hero reveal stagger-5">
+          <a href="https://github.com/vinayvarma187" target="_blank"><i data-lucide="github"></i></a>
+          <a href="#" target="_blank"><i data-lucide="linkedin"></i></a>
+          <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title reveal">About Me</h2>
-        <div class="glass-card about-card reveal">
-          <p>
-            I build resilient distributed systems and security-focused cloud infrastructure. 
-            Currently at Cisco, I process over 1.2TB of daily telemetry data and implement 
-            agentic AI workflows to fight network threats at scale.
+    <section id="about" class="blended-section">
+      <div class="container about-grid">
+        <div class="about-image reveal slide-left">
+          <div class="image-wrapper">
+             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay" alt="Vinay Varma">
+             <div class="image-border"></div>
+          </div>
+        </div>
+        <div class="about-text reveal slide-right">
+          <h2 class="section-title">About Me</h2>
+          <p class="bio">
+            Passionate software engineer with expertise in building scalable distributed systems and cloud-native applications. 
+            Currently pursuing **MS in Computer Science at Syracuse University**. Previously worked at **Tata Consultancy Services** 
+            as a Systems Engineer, building enterprise-grade microservices and security solutions. 
+            Deeply interested in cloud architecture, cybersecurity, and high-performance backend systems.
           </p>
+          <div class="skills-categories" id="skills-container">
+            <!-- Skills injected via JS -->
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" class="blended-section">
       <div class="container">
-        <h2 class="section-title reveal">Experience</h2>
+        <h2 class="section-title reveal">Professional Journey</h2>
         <div class="timeline" id="experience-timeline">
           <!-- Timeline items injected via JS -->
         </div>
@@ -62,62 +86,44 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
+    <section id="projects" class="blended-section">
       <div class="container">
-        <h2 class="section-title reveal">Featured Projects</h2>
+        <h2 class="section-title reveal">Featured Work</h2>
         <div class="projects-grid" id="featured-projects">
-          <!-- Featured projects (hardcoded) injected via JS -->
+          <!-- Featured projects injected via JS -->
         </div>
         
-        <h3 class="subsection-title reveal">Open Source & GitHub</h3>
+        <h3 class="subsection-title reveal">Open Source Repos</h3>
         <div class="projects-grid" id="github-projects">
-          <!-- GitHub projects fetched via API -->
-          <div class="loading">Loading repositories...</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <div class="container">
-        <h2 class="section-title reveal">Technical Skills</h2>
-        <div class="skills-categories" id="skills-container">
-          <!-- Skills categories injected via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title reveal">Education</h2>
-        <div class="education-grid" id="education-container">
-          <!-- Education injected via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section id="certifications">
-      <div class="container">
-        <h2 class="section-title reveal">Certifications</h2>
-        <div class="certs-grid" id="certs-container">
-          <!-- Certs injected via JS -->
+          <div class="loading">Fetching repositories from the cloud...</div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="blended-section">
       <div class="container">
-        <h2 class="section-title reveal">Get In Touch</h2>
-        <div class="glass-card contact-card reveal">
-          <p>Interested in working together or just want to say hi?</p>
-          <div class="contact-links">
-            <a href="mailto:vinayvarmap34@gmail.com" class="btn btn-primary">Email Me</a>
-            <div class="social-icons">
-              <a href="https://github.com/vinay0304" target="_blank" aria-label="GitHub"><i data-lucide="github"></i></a>
-              <a href="#" target="_blank" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <div class="contact-wrapper">
+          <div class="contact-card glass-card reveal">
+            <h2 class="section-title">Get In Touch</h2>
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <input type="text" id="name" required placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" required placeholder="Your Email">
+              </div>
+              <div class="form-group">
+                <textarea id="message" required placeholder="Your Message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" id="send-btn">
+                <span>Send Message</span>
+              </button>
+            </form>
+            <div class="contact-info">
+               <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
+               <a href="https://github.com/vinayvarma187" target="_blank"><i data-lucide="github"></i></a>
+               <a href="#" target="_blank"><i data-lucide="linkedin"></i></a>
             </div>
           </div>
         </div>
@@ -127,12 +133,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2024 Vinay Varma Pericherla. Built with Passion & Precision.</p>
+      <p>&copy; 2026 Vinay Varma Pericherla. MS Computer Science @ Syracuse.</p>
     </div>
   </footer>
 
   <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
-    <i data-lucide="arrow-up"></i>
+    <i data-lucide="chevron-up"></i>
   </button>
 
   <script src="https://unpkg.com/lucide@latest"></script>
