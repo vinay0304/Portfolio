@@ -3,128 +3,235 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinay Varma Pericherla | Distributed Systems & Cloud Security</title>
-  <meta name="description" content="Portfolio of Vinay Varma Pericherla - MS CS at Syracuse University. Expert in distributed systems, cloud architecture, and security.">
+  <title>Vinay Varma Pericherla | Software Engineer</title>
+  <meta name="description" content="Portfolio of Vinay Varma Pericherla - Distributed Systems, Cloud Architecture & Security Engineer. MS CS at Syracuse University.">
   <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-  <!-- Custom Creature Cursor -->
-  <div id="creature-cursor-container">
-    <canvas id="cursor-canvas"></canvas>
-  </div>
+  <!-- Interactive Cursor Layers -->
+  <div id="liquid-glass-cursor"></div>
+  <canvas id="cursor-canvas-overlay"></canvas>
 
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="logo">VVP<span class="glow-dot">.</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
+    <div id="nav-indicator"></div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="active">VVP</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
   <main>
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
-      <canvas id="particle-canvas"></canvas>
-      <div class="container hero-content">
-        <h1 class="reveal stagger-1">Vinay Varma <span class="gradient-text">Pericherla</span></h1>
-        <h2 class="subtitle reveal stagger-2">MS Computer Science @ Syracuse University</h2>
-        <div class="tagline-container reveal stagger-3">
-          <span id="typewriter" class="typewriter-text"></span><span class="cursor">|</span>
+      <div class="container hardware-accel">
+        <h1 class="hero-name reveal">Vinay Varma Pericherla</h1>
+        <div class="tagline-container reveal">
+          <span id="typewriter"></span><span class="cursor-bar">|</span>
         </div>
-        <div class="hero-actions reveal stagger-4">
+        <h3 class="subtitle reveal" style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 2.5rem;">
+          MS Computer Science @ Syracuse University
+        </h3>
+        <div class="hero-actions reveal">
           <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#" class="btn btn-outline" id="resume-btn">Download Resume</a>
+          <a href="https://www.linkedin.com/in/pericherlavv" target="_blank" class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/vinay0304" target="_blank" class="btn btn-outline">GitHub</a>
         </div>
-        <div class="social-links-hero reveal stagger-5">
-          <a href="https://github.com/vinayvarma187" target="_blank"><i data-lucide="github"></i></a>
-          <a href="#" target="_blank"><i data-lucide="linkedin"></i></a>
-          <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
+        <div class="scroll-arrow highlight">
+          <i data-lucide="arrow-down"></i>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="blended-section">
-      <div class="container about-grid">
-        <div class="about-image reveal slide-left">
-          <div class="image-wrapper">
-             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay" alt="Vinay Varma">
-             <div class="image-border"></div>
+    <section id="about">
+      <div class="container about-wrapper">
+        <h2 class="section-title reveal">About Me</h2>
+        <div class="about-grid reveal">
+          <div class="about-visual">
+            <div class="avatar-blob">
+               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay" alt="Vinay Varma">
+            </div>
           </div>
-        </div>
-        <div class="about-text reveal slide-right">
-          <h2 class="section-title">About Me</h2>
-          <p class="bio">
-            Passionate software engineer with expertise in building scalable distributed systems and cloud-native applications. 
-            Currently pursuing **MS in Computer Science at Syracuse University**. Previously worked at **Tata Consultancy Services** 
-            as a Systems Engineer, building enterprise-grade microservices and security solutions. 
-            Deeply interested in cloud architecture, cybersecurity, and high-performance backend systems.
-          </p>
-          <div class="skills-categories" id="skills-container">
-            <!-- Skills injected via JS -->
+          <div class="about-text">
+            <p class="bio highlight-text">
+              Passionate software engineer with 2+ years of industry experience at **Tata Consultancy Services**, building enterprise-grade microservices, cloud-native applications, and security systems processing millions of daily requests. Currently pursuing **MS in Computer Science at Syracuse University** with a 3.8 GPA, specializing in distributed systems and network security. 
+            </p>
+            <div class="skills-stagger stagger-in">
+              <div class="skill-cat">
+                <h4>Languages</h4>
+                <div class="tags">
+                   <span>Python</span><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>Go</span><span>C++</span><span>Kotlin</span>
+                </div>
+              </div>
+              <div class="skill-cat">
+                <h4>Cloud & Platform</h4>
+                <div class="tags">
+                   <span>AWS</span><span>GCP</span><span>Azure</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span>
+                </div>
+              </div>
+              <div class="skill-cat">
+                <h4>Backend</h4>
+                <div class="tags">
+                   <span>Node.js</span><span>Spring Boot</span><span>FastAPI</span><span>GraphQL</span><span>REST APIs</span><span>Microservices</span>
+                </div>
+              </div>
+              <div class="skill-cat">
+                <h4>Databases</h4>
+                <div class="tags">
+                   <span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Cassandra</span><span>DynamoDB</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="blended-section">
+    <section id="experience">
       <div class="container">
-        <h2 class="section-title reveal">Professional Journey</h2>
-        <div class="timeline" id="experience-timeline">
-          <!-- Timeline items injected via JS -->
+        <h2 class="section-title reveal">Professional Experience</h2>
+        <div class="timeline reveal">
+          <!-- TCS Entry -->
+          <div class="timeline-item left">
+            <div class="glass-card exp-card">
+              <div class="exp-header">
+                <h3>Systems Engineer</h3>
+                <span class="company">Tata Consultancy Services</span>
+                <span class="period">July 2021 – July 2023 · Hyderabad</span>
+              </div>
+              <ul class="points">
+                <li>Architected microservices on AWS reducing system latency by 40% for 500K+ users</li>
+                <li>Built secure REST APIs processing 2M+ daily requests with OAuth2 and JWT</li>
+                <li>Automated CI/CD pipelines with Jenkins and Docker cutting deployment time by 60%</li>
+                <li>Led a team of 4 engineers delivering a cloud migration 2 weeks ahead of schedule</li>
+                <li>Implemented Apache Kafka event streaming handling 500K events/day</li>
+                <li>Reduced cloud infra costs by 25% through auto-scaling and resource optimization</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Syracuse Entry -->
+          <div class="timeline-item right">
+            <div class="glass-card exp-card">
+              <div class="exp-header">
+                <h3>Graduate Research & Teaching Assistant</h3>
+                <span class="company">Syracuse University</span>
+                <span class="period">August 2023 – Present · Syracuse, NY</span>
+              </div>
+              <ul class="points">
+                <li>MS Computer Science — GPA 3.8/4.0</li>
+                <li>Coursework: Distributed Systems, Cloud Computing, Network Security, Advanced Algorithms</li>
+                <li>Research Assistant on distributed consensus algorithm optimizations (Raft/Paxos)</li>
+                <li>Teaching Assistant for Introduction to Programming — 200+ students</li>
+                <li>Active member of ACM Chapter and Cybersecurity Club</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="blended-section">
+    <section id="projects">
       <div class="container">
-        <h2 class="section-title reveal">Featured Work</h2>
-        <div class="projects-grid" id="featured-projects">
-          <!-- Featured projects injected via JS -->
-        </div>
-        
-        <h3 class="subsection-title reveal">Open Source Repos</h3>
-        <div class="projects-grid" id="github-projects">
-          <div class="loading">Fetching repositories from the cloud...</div>
+        <h2 class="section-title reveal">Featured Projects</h2>
+        <div class="projects-grid">
+          <!-- 1. Enterprise Reporting Portal -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--primary);">
+            <div class="badge-row"><span class="badge blue">Enterprise</span></div>
+            <h3>Enterprise Reporting Portal</h3>
+            <p>Full-stack reporting platform in C# with RBAC, real-time dashboards, and automated scheduling. Supports 10+ report types.</p>
+            <div class="tags"><span>C#</span><span>.NET</span><span>SQL Server</span><span>Azure</span></div>
+            <a href="https://github.com/vinay0304/Enterprise-reporting-portal" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 2. Course Predictor ML -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--amber);">
+            <div class="badge-row"><span class="badge amber">Machine Learning</span></div>
+            <h3>Course Predictor ML</h3>
+            <p>ML model that predicts optimal course selections based on academic history and performance. 87% accuracy.</p>
+            <div class="tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>PostgreSQL</span></div>
+            <a href="https://github.com/vinay0304/Course-Predictor-ML" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 3. Enterprise Data Access Platform -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--accent);">
+            <div class="badge-row"><span class="badge violet">Backend</span></div>
+            <h3>Data Access Platform</h3>
+            <p>Secure data access platform in Kotlin with fine-grained permission controls and audit logging for enterprise governance.</p>
+            <div class="tags"><span>Kotlin</span><span>Spring Boot</span><span>Docker</span><span>K8s</span></div>
+            <a href="https://github.com/vinay0304/Enterprise-Data-Access-Platform" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 4. Risk Analytics Dashboard -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--cyan);">
+            <div class="badge-row"><span class="badge cyan">Analytics</span></div>
+            <h3>Risk Analytics Dashboard</h3>
+            <p>Platform aggregating financial data, performing statistical modeling, and visualizing exposure via D3.js.</p>
+            <div class="tags"><span>Python</span><span>FastAPI</span><span>Redis</span><span>D3.js</span></div>
+            <a href="https://github.com/vinay0304/Risk-Analytics-Dashboard" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 5. AI Operations Dashboard -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--primary);">
+            <div class="badge-row"><span class="badge blue">AI/ML</span></div>
+            <h3>AI Operations Dashboard</h3>
+            <p>Intelligent operations monitoring platform using AI to detect anomalies and automate incident response.</p>
+            <div class="tags"><span>Python</span><span>TensorFlow</span><span>Kafka</span><span>InfluxDB</span></div>
+            <a href="https://github.com/vinay0304/AI-Operations-Dashboard" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 6. Distributed File Storage -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--accent);">
+            <div class="badge-row"><span class="badge violet">Distributed Systems</span></div>
+            <h3>Distributed Storage</h3>
+            <p>Fault-tolerant system in Go implementing consistent hashing, replication, and automatic failover (HDFS inspired).</p>
+            <div class="tags"><span>Go</span><span>gRPC</span><span>Consistent Hashing</span><span>Raft</span></div>
+            <a href="https://github.com/vinay0304/Distributed-File-Storage-System" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 7. Gym Logger -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--amber);">
+            <div class="badge-row"><span class="badge amber">Full Stack</span></div>
+            <h3>Gym Logger</h3>
+            <p>Workout tracking app with exercise logging, personal records, and AI-powered recommendations.</p>
+            <div class="tags"><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>Chart.js</span></div>
+            <a href="https://github.com/vinay0304/gym-logger" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
+
+          <!-- 8. SENG691 Data Intensive Apps -->
+          <div class="glass-card project-card reveal" style="--card-glow: var(--cyan);">
+            <div class="badge-row"><span class="badge blue">Research</span></div>
+            <h3>Data Intensive Applications</h3>
+            <p>Research project exploring CAP theorem trade-offs, stream processing, and CAP benchmarks.</p>
+            <div class="tags"><span>Spark</span><span>Kafka</span><span>Cassandra</span><span>HDFS</span></div>
+            <a href="https://github.com/vinay0304/SENG691-DataIntensiveAppilicationsProject" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="blended-section">
+    <section id="contact">
       <div class="container">
-        <div class="contact-wrapper">
-          <div class="contact-card glass-card reveal">
-            <h2 class="section-title">Get In Touch</h2>
-            <form id="contact-form" class="contact-form">
-              <div class="form-group">
-                <input type="text" id="name" required placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="email" id="email" required placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <textarea id="message" required placeholder="Your Message"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" id="send-btn">
-                <span>Send Message</span>
-              </button>
-            </form>
-            <div class="contact-info">
-               <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
-               <a href="https://github.com/vinayvarma187" target="_blank"><i data-lucide="github"></i></a>
-               <a href="#" target="_blank"><i data-lucide="linkedin"></i></a>
+        <div class="glass-card contact-wrapper reveal">
+          <h2 class="section-title">Get In Touch</h2>
+          <form id="contact-form">
+            <div class="input-row">
+              <input type="text" placeholder="Name" required>
+              <input type="email" placeholder="Email" required>
             </div>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+          </form>
+          <div class="social-footer">
+            <a href="https://github.com/vinay0304" target="_blank"><i data-lucide="github"></i></a>
+            <a href="https://www.linkedin.com/in/pericherlavv" target="_blank"><i data-lucide="linkedin"></i></a>
+            <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
           </div>
         </div>
       </div>
@@ -132,14 +239,8 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Vinay Varma Pericherla. MS Computer Science @ Syracuse.</p>
-    </div>
+    <p>Built by Vinay Varma Pericherla · 2024</p>
   </footer>
-
-  <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
-    <i data-lucide="chevron-up"></i>
-  </button>
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script type="module" src="./src/main.js"></script>

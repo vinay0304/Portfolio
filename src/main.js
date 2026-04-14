@@ -1,469 +1,395 @@
-// Portfolio Data - MS CS @ Syracuse & TCS Experience
-const EXPERIENCE = [
-  {
-    role: "Systems Engineer",
-    company: "Tata Consultancy Services (TCS)",
-    location: "Mumbai/Hybrid",
-    period: "July 2021 – July 2023",
-    points: [
-      "Designed and deployed microservices architecture on AWS reducing system latency by 40%",
-      "Built secure REST APIs handling 2M+ daily requests with JWT and OAuth2 authentication",
-      "Automated CI/CD pipelines using Jenkins and Docker cutting deployment time by 60%",
-      "Led a team of 4 engineers delivering a cloud migration project 2 weeks ahead of schedule",
-      "Implemented real-time data streaming with Apache Kafka processing 500K events/day"
-    ]
-  },
-  {
-    role: "MS Computer Science Student",
-    company: "Syracuse University",
-    location: "Syracuse, NY",
-    period: "August 2023 – Present",
-    points: [
-      "Advanced coursework: Distributed Systems, Cloud Computing, Network Security, Algorithms",
-      "Research Assistant focused on distributed consensus and sharding algorithms",
-      "Teaching Assistant for graduate-level programming and system design courses",
-      "Current GPA: 3.8/4.0"
-    ]
+// --- GLOW FOX ENGINE (Canvas 2D) ---
+class GlowFox {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.lerpFactor = 0.08;
+    this.sparks = [];
+    this.idleTime = 0;
+    this.isIdle = false;
+    this.size = 80;
+    this.targetSize = 80;
+    this.activeSection = null;
+    this.patrolProgress = 0;
+    this.state = 'following'; // 'following', 'patrolling', 'idle'
+
+    this.init();
   }
-];
 
-const FEATURED_PROJECTS = [
-  {
-    title: "CloudGuard",
-    description: "Cloud security monitoring tool built with Python and AWS Lambda that detects anomalies and sends real-time alerts.",
-    tags: ["Python", "AWS", "Terraform", "Security"],
-    links: { github: "#", demo: "#" }
-  },
-  {
-    title: "DistributeX",
-    description: "A distributed key-value store implementing Raft consensus algorithm from scratch with strong consistency.",
-    tags: ["Go", "gRPC", "Docker", "Raft"],
-    links: { github: "#", demo: "#" }
-  },
-  {
-    title: "SecureChat",
-    description: "End-to-end encrypted messaging app with perfect forward secrecy and WebSocket-based real-time communication.",
-    tags: ["Node.js", "WebSockets", "Cryptography"],
-    links: { github: "#", demo: "#" }
-  },
-  {
-    title: "StreamPipeline",
-    description: "Real-time data pipeline processing 1M events/hour using Kafka and Spark for high-throughput telemetry.",
-    tags: ["Kafka", "Apache Spark", "Python"],
-    links: { github: "#", demo: "#" }
+  init() {
+    window.addEventListener('resize', () => {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    });
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+
+    document.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+      this.idleTime = 0;
+      this.state = 'following';
+    });
   }
-];
 
-const SKILLS = {
-  "Languages": ["Python", "Java", "JavaScript", "TypeScript", "Go", "C++"],
-  "Cloud": ["AWS", "GCP", "Azure", "Docker", "Kubernetes"],
-  "Backend": ["Node.js", "Spring Boot", "FastAPI", "GraphQL", "REST"],
-  "Databases": ["PostgreSQL", "MongoDB", "Redis", "Cassandra"],
-  "Security": ["OAuth2", "JWT", "SSL/TLS", "OWASP", "PenTesting"],
-  "Tools": ["Git", "CI/CD", "Terraform", "Jenkins", "Kafka"]
-};
+  update() {
+    this.idleTime++;
+    if (this.idleTime > 120 && this.state !== 'patrolling') {
+      this.state = 'patrolling';
+      this.patrolProgress = 0;
+    }
 
-// --- Core Initialization ---
+    if (this.state === 'following') {
+      this.pos.x += (this.mouse.x - this.pos.x) * this.lerpFactor;
+      this.pos.y += (this.mouse.y - this.pos.y) * this.lerpFactor;
+    } else if (this.state === 'patrolling' && this.activeSection) {
+      this.updatePatrol();
+    }
+
+    // Size easing
+    this.size += (this.targetSize - this.size) * 0.1;
+
+    // Sparks
+    if (Math.random() > 0.4) {
+      this.sparks.push(new Spark(this.pos.x, this.pos.y));
+    }
+    this.sparks = this.sparks.filter(s => s.update());
+  }
+
+  updatePatrol() {
+    const rect = this.activeSection.getBoundingClientRect();
+    // Safety check if section is too small
+    if (rect.width < 100) return;
+
+    this.patrolProgress += 0.005;
+    const perimeter = (rect.width + rect.height) * 2;
+    const progress = this.patrolProgress % 1;
+    
+    // Simple rectangular walk logic
+    const x = rect.left;
+    const y = rect.top;
+    const w = rect.width;
+    const h = rect.height;
+
+    let targetX, targetY;
+    if (progress < 0.25) { // Top
+        targetX = x + (progress / 0.25) * w;
+        targetY = y;
+    } else if (progress < 0.5) { // Right
+        targetX = x + w;
+        targetY = y + ((progress - 0.25) / 0.25) * h;
+    } else if (progress < 0.75) { // Bottom
+        targetX = x + w - ((progress - 0.5) / 0.25) * w;
+        targetY = y + h;
+    } else { // Left
+        targetX = x;
+        targetY = y + h - ((progress - 0.75) / 0.25) * h;
+    }
+
+    this.pos.x += (targetX - this.pos.x) * 0.05;
+    this.pos.y += (targetY - this.pos.y) * 0.05;
+  }
+
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Draw Sparks
+    this.sparks.forEach(s => s.draw(this.ctx));
+
+    const { x, y } = this.pos;
+    const s = this.size;
+
+    this.ctx.save();
+    this.ctx.translate(x, y);
+    
+    // Body (Glow)
+    const grd = this.ctx.createRadialGradient(0, 0, 0, 0, 0, s);
+    grd.addColorStop(0, 'rgba(245, 158, 11, 0.4)');
+    grd.addColorStop(1, 'rgba(245, 158, 11, 0)');
+    this.ctx.fillStyle = grd;
+    this.ctx.beginPath();
+    this.ctx.arc(0, 0, s, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    // Stylized Fox Shape
+    this.ctx.fillStyle = '#F59E0B';
+    this.ctx.shadowBlur = 10;
+    this.ctx.shadowColor = '#F59E0B';
+    
+    // Ears
+    this.ctx.beginPath();
+    this.ctx.moveTo(-15, -10);
+    this.ctx.lineTo(-20, -30);
+    this.ctx.lineTo(-5, -15);
+    this.ctx.fill();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(15, -10);
+    this.ctx.lineTo(20, -30);
+    this.ctx.lineTo(5, -15);
+    this.ctx.fill();
+
+    // Face
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 0, 20, 15, 0, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    // Eyes
+    this.ctx.fillStyle = '#fff';
+    this.ctx.beginPath();
+    this.ctx.arc(-8, -2, 2, 0, Math.PI * 2);
+    this.ctx.arc(8, -2, 2, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    // Tail (Bushy)
+    this.ctx.fillStyle = '#F59E0B';
+    this.ctx.beginPath();
+    this.ctx.ellipse(30, 10, 25, 12, Math.PI/4, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.restore();
+  }
+}
+
+class Spark {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.vx = (Math.random() - 0.5) * 4;
+    this.vy = (Math.random() - 0.5) * 4;
+    this.alpha = 1;
+    this.size = Math.random() * 3;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha -= 0.02;
+    return this.alpha > 0;
+  }
+  draw(ctx) {
+    ctx.fillStyle = `rgba(245, 158, 11, ${this.alpha})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// --- LIQUID GLASS EFFECT (Spring Physics) ---
+class LiquidGlass {
+  constructor() {
+    this.el = document.getElementById('liquid-glass-cursor');
+    this.pos = { x: 0, y: 0 };
+    this.current = { x: 0, y: 0 };
+    this.vel = { x: 0, y: 0 };
+    this.k = 0.15; // spring constant
+    this.d = 0.7; // damping
+    this.isVisible = false;
+
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('mousemove', (e) => {
+      this.pos.x = e.clientX;
+      this.pos.y = e.clientY;
+    });
+
+    const targetSelectors = 'h1, h2, h3, p, li, span.tags span';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(targetSelectors)) {
+        this.isVisible = true;
+        this.el.style.opacity = '1';
+        this.el.style.transform = `translate(-50%, -50%) scale(1)`;
+      } else {
+        this.isVisible = false;
+        this.el.style.opacity = '0';
+        this.el.style.transform = `translate(-50%, -50%) scale(0)`;
+      }
+    });
+  }
+
+  update() {
+    // Spring physics update
+    const ax = (this.pos.x - this.current.x) * this.k;
+    const ay = (this.pos.y - this.current.y) * this.k;
+    this.vel.x = (this.vel.x + ax) * this.d;
+    this.vel.y = (this.vel.y + ay) * this.d;
+    this.current.x += this.vel.x;
+    this.current.y += this.vel.y;
+
+    this.el.style.left = `${this.current.x}px`;
+    this.el.style.top = `${this.current.y}px`;
+  }
+}
+
+// --- CONSTELLATION BACKGROUND ---
+class Constellation {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.count = 80;
+    this.mouse = { x: 0, y: 0 };
+    
+    this.init();
+  }
+
+  init() {
+    for (let i = 0; i < this.count; i++) {
+        this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 2 + 1
+        });
+    }
+    
+    document.addEventListener('mousemove', (e) => {
+        this.mouse.x = e.clientX;
+        this.mouse.y = e.clientY;
+    });
+  }
+
+  update() {
+    this.particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Mouse reaction
+        const dx = p.x - this.mouse.x;
+        const dy = p.y - this.mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+            p.x += dx * 0.01;
+            p.y += dy * 0.01;
+        }
+
+        if (p.x < 0) p.x = this.canvas.width;
+        if (p.x > this.canvas.width) p.x = 0;
+        if (p.y < 0) p.y = this.canvas.height;
+        if (p.y > this.canvas.height) p.y = 0;
+    });
+  }
+
+  draw() {
+    this.ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+    this.particles.forEach(p => {
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        this.ctx.fill();
+    });
+
+    for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+            const dx = this.particles[i].x - this.particles[j].x;
+            const dy = this.particles[i].y - this.particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 120) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                this.ctx.strokeStyle = `rgba(59, 130, 246, ${1 - dist / 120})`;
+                this.ctx.lineWidth = 0.5;
+                this.ctx.stroke();
+            }
+        }
+    }
+  }
+}
+
+// --- CORE SYSTEM: MAIN ---
 document.addEventListener('DOMContentLoaded', () => {
-  initTypewriter();
-  initCreatureCursor();
-  initParticles();
-  renderSkills();
-  renderExperience();
-  renderFeaturedProjects();
-  fetchGitHubRepos();
-  initRevealAnimations();
-  initContactForm();
-  if (window.lucide) lucide.createIcons();
+  const foxCanvas = document.getElementById('cursor-canvas-overlay');
+  const fox = new GlowFox(foxCanvas);
+  const glass = new LiquidGlass();
+  const constellation = new Constellation(foxCanvas); // Reuse overlay canvas or separate if collision needed
+
+  // Animation Loop
+  function loop() {
+    // We clear fox ctx inside its draw, so we need to coordinate
+    fox.update();
+    constellation.update();
+    
+    fox.draw(); // Fox draw clears the canvas
+    constellation.draw();
+    
+    glass.update();
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  initInteractions(fox);
+  initScrollAnimations(fox);
 });
 
-// --- Typewriter Effect ---
-function initTypewriter() {
-  const words = ["Software Engineer", "Distributed Systems Architect", "Cloud & Security Specialist", "Full Stack Developer"];
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+function initInteractions(fox) {
+  // Typewriter
+  const words = ["Software Engineer", "Distributed Systems Architect", "Cloud & Security Specialist"];
+  let wordIndex = 0, charIndex = 0, isDeleting = false;
   const element = document.getElementById('typewriter');
 
   function type() {
-    const currentWord = words[wordIndex];
-    if (isDeleting) {
-      element.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      element.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 40 : 80;
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      typeSpeed = 500;
-    }
-    setTimeout(type, typeSpeed);
+    const current = words[wordIndex];
+    element.textContent = isDeleting ? current.substring(0, charIndex--) : current.substring(0, charIndex++);
+    
+    let speed = 100;
+    if (!isDeleting && charIndex === current.length + 1) { speed = 2000; isDeleting = true; }
+    else if (isDeleting && charIndex === 0) { speed = 500; isDeleting = false; wordIndex = (wordIndex + 1) % words.length; }
+    
+    setTimeout(type, speed);
   }
   type();
-}
 
-// --- Custom Creature Cursor ---
-function initCreatureCursor() {
-  const canvas = document.getElementById('cursor-canvas');
-  const ctx = canvas.getContext('2d');
-  let mouse = { x: -100, y: -100 };
-  let points = [];
-  const segmentCount = 12;
-  
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  // Hover Reactions for Fox
+  document.querySelectorAll('a, button, .glass-card').forEach(el => {
+    el.addEventListener('mouseenter', () => fox.targetSize = 110);
+    el.addEventListener('mouseleave', () => fox.targetSize = 80);
   });
 
-  document.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  // Initialize trail points
-  for (let i = 0; i < segmentCount; i++) {
-    points.push({ x: mouse.x, y: mouse.y });
-  }
-
-  // Head of creature
-  let headSize = 6;
-  let targetHeadSize = 6;
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Smooth head movement
-    points[0].x += (mouse.x - points[0].x) * 0.25;
-    points[0].y += (mouse.y - points[0].y) * 0.25;
-
-    for (let i = 1; i < segmentCount; i++) {
-        points[i].x += (points[i-1].x - points[i].x) * 0.35;
-        points[i].y += (points[i-1].y - points[i].y) * 0.35;
-    }
-
-    // Creature trail
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < segmentCount; i++) {
-        const xc = (points[i].x + points[i - 1].x) / 2;
-        const yc = (points[i].y + points[i - 1].y) / 2;
-        ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, xc, yc);
-    }
-    ctx.strokeStyle = 'rgba(0, 243, 255, 0.3)';
-    ctx.lineWidth = 4;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-
-    // Body glow
-    headSize += (targetHeadSize - headSize) * 0.2;
-    ctx.beginPath();
-    ctx.arc(points[0].x, points[0].y, headSize, 0, Math.PI * 2);
-    ctx.fillStyle = '#00f3ff';
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = '#00f3ff';
-    ctx.fill();
-
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Hover reactions
-  document.querySelectorAll('a, button, .skill-pill, .glass-card').forEach(el => {
-    el.addEventListener('mouseenter', () => targetHeadSize = 12);
-    el.addEventListener('mouseleave', () => targetHeadSize = 6);
-  });
-}
-
-// --- Background Particles ---
-function initParticles() {
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  class Particle {
-    constructor() {
-      this.init();
-    }
-    init() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.2;
-      this.vy = (Math.random() - 0.5) * 0.2;
-      this.size = Math.random() * 2;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-    }
-    draw() {
-      ctx.fillStyle = 'rgba(0, 243, 255, 0.2)';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  for(let i=0; i<80; i++) particles.push(new Particle());
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Parallax logic relative to mouse
-    const mouseX = (window.innerWidth / 2 - (window.lastMouseX || 0)) * 0.05;
-    const mouseY = (window.innerHeight / 2 - (window.lastMouseY || 0)) * 0.05;
-
-    particles.forEach(p => { 
-        p.update(); 
-        p.draw(mouseX, mouseY); 
+  // Particle Burst on Submit
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = "Sent! ✨";
+      // Burst implementation using fox sparks
+      for (let i = 0; i < 50; i++) fox.sparks.push(new Spark(fox.pos.x, fox.pos.y));
     });
-    requestAnimationFrame(animate);
   }
   
-  document.addEventListener('mousemove', (e) => {
-    window.lastMouseX = e.clientX;
-    window.lastMouseY = e.clientY;
-  });
-
-  animate();
+  if (window.lucide) lucide.createIcons();
 }
 
-class Particle {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.init();
-    }
-    init() {
-      this.x = Math.random() * this.canvas.width;
-      this.y = Math.random() * this.canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.2;
-      this.vy = (Math.random() - 0.5) * 0.2;
-      this.size = Math.random() * 2;
-      this.depth = Math.random() * 2;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0) this.x = this.canvas.width;
-      if (this.x > this.canvas.width) this.x = 0;
-      if (this.y < 0) this.y = this.canvas.height;
-      if (this.y > this.canvas.height) this.y = 0;
-    }
-    draw(mx, my) {
-      const ctx = this.canvas.getContext('2d');
-      ctx.fillStyle = 'rgba(0, 243, 255, 0.2)';
-      ctx.beginPath();
-      // Apply depth-based parallax
-      ctx.arc(this.x + mx * this.depth, this.y + my * this.depth, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-}
-
-// --- Rendering Functions ---
-function renderSkills() {
-  const container = document.getElementById('skills-container');
-  container.innerHTML = Object.entries(SKILLS).map(([cat, list]) => `
-    <div class="skill-category reveal">
-      <h4>${cat}</h4>
-      <div class="skill-pills">
-        ${list.map(s => `<span class="skill-pill">${s}</span>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderExperience() {
-  const container = document.getElementById('experience-timeline');
-  container.innerHTML = EXPERIENCE.map(exp => `
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content glass-card">
-        <h3>${exp.role}</h3>
-        <p class="company">${exp.company} | ${exp.period}</p>
-        <ul class="points">
-          ${exp.points.map(p => `<li>${p}</li>`).join('')}
-        </ul>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderFeaturedProjects() {
-  const container = document.getElementById('featured-projects');
-  container.innerHTML = FEATURED_PROJECTS.map(proj => `
-    <div class="glass-card project-card reveal">
-      <h3>${proj.title}</h3>
-      <p>${proj.description}</p>
-      <div class="tags">
-        ${proj.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
-      <div class="project-actions">
-        <a href="${proj.links.github}" class="btn-link"><i data-lucide="github"></i> Repository</a>
-        <a href="${proj.links.demo}" class="btn-link"><i data-lucide="external-link"></i> Live Demo</a>
-      </div>
-    </div>
-  `).join('');
-}
-
-async function fetchGitHubRepos() {
-  const container = document.getElementById('github-projects');
-  try {
-    const res = await fetch('https://api.github.com/users/vinayvarma187/repos?sort=updated&per_page=6');
-    const repos = await res.json();
-    if (!Array.isArray(repos)) throw new Error('Invalid response');
-
-    container.innerHTML = repos.map(repo => `
-      <div class="glass-card project-card reveal">
-        <h3>${repo.name}</h3>
-        <p>${repo.description || 'No description available.'}</p>
-        <div class="tags">
-          <span class="tag">${repo.language || 'Code'}</span>
-          <span class="tag"><i data-lucide="star"></i> ${repo.stargazers_count}</span>
-        </div>
-        <a href="${repo.html_url}" class="btn-link" target="_blank">View Repo &rarr;</a>
-      </div>
-    `).join('');
-    if (window.lucide) lucide.createIcons();
-  } catch (err) {
-    container.innerHTML = '<p class="error-msg">GitHub API limit reached. Showing offline projects instead.</p>';
-  }
-}
-
-// --- Helper: Animations ---
-function initRevealAnimations() {
+function initScrollAnimations(fox) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        if (entry.target.classList.contains('timeline-content')) {
-            animateNumbers(entry.target);
-        }
+        fox.activeSection = entry.target.closest('section');
+        updateNav(fox.activeSection.id);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.3 });
 
-  document.querySelectorAll('.reveal, .timeline-content').forEach(el => observer.observe(el));
-  
-  // Mobile Nav Logic
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('mobile-open');
-        hamburger.classList.toggle('active');
-    });
-  }
+  document.querySelectorAll('.reveal, .stagger-in, section').forEach(el => observer.observe(el));
 }
 
-function animateNumbers(container) {
-  const numEls = container.querySelectorAll('li');
-  numEls.forEach(li => {
-    const text = li.innerText;
-    const match = text.match(/(\d+)(%|M\+|K)/);
-    if (match && !li.dataset.animated) {
-        li.dataset.animated = "true";
-        const target = parseInt(match[1]);
-        const suffix = match[2];
-        let current = 0;
-        const duration = 2000;
-        const start = performance.now();
-        
-        const update = (now) => {
-            const progress = Math.min((now - start) / duration, 1);
-            current = Math.floor(progress * target);
-            li.innerHTML = text.replace(match[0], `<span class="counter">${current}${suffix}</span>`);
-            if (progress < 1) requestAnimationFrame(update);
-        };
-        requestAnimationFrame(update);
+function updateNav(id) {
+  const links = document.querySelectorAll('.nav-links a');
+  const indicator = document.getElementById('nav-indicator');
+  links.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${id}`) {
+        link.classList.add('active');
+        const rect = link.getBoundingClientRect();
+        const navRect = link.closest('.navbar').getBoundingClientRect();
+        indicator.style.width = `${rect.width}px`;
+        indicator.style.left = `${rect.left - navRect.left}px`;
     }
   });
-}
-
-// --- Helper: Contact Form ---
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const sendBtn = document.getElementById('send-btn');
-  
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    createParticleBurst(sendBtn);
-    sendBtn.innerText = "Message Sent! ✨";
-    form.reset();
-  });
-}
-
-function createParticleBurst(el) {
-    const canvas = document.createElement('canvas');
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex = '10000';
-    document.body.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const rect = el.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
-    
-    let particles = [];
-    for (let i = 0; i < 30; i++) {
-        particles.push({
-            x: originX,
-            y: originY,
-            vx: (Math.random() - 0.5) * 15,
-            vy: (Math.random() - 0.5) * 15,
-            size: Math.random() * 4 + 2,
-            alpha: 1,
-            color: Math.random() > 0.5 ? '#00f3ff' : '#bc13fe'
-        });
-    }
-    
-    function animateBurst() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let alive = false;
-        
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vy += 0.2; // gravity
-            p.alpha -= 0.02;
-            
-            if (p.alpha > 0) {
-                alive = true;
-                ctx.globalAlpha = p.alpha;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        });
-        
-        if (alive) {
-            requestAnimationFrame(animateBurst);
-        } else {
-            document.body.removeChild(canvas);
-        }
-    }
-    animateBurst();
 }
