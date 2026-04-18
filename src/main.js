@@ -33,6 +33,7 @@ class GlowFox {
       this.state = 'following';
     });
   }
+  
 
   update() {
     this.idleTime++;
