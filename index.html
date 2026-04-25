@@ -1,248 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinay Varma Pericherla | Software Engineer</title>
-  <meta name="description" content="Portfolio of Vinay Varma Pericherla - Distributed Systems, Cloud Architecture & Security Engineer. MS CS at Syracuse University.">
-  <link rel="stylesheet" href="./src/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinay Varma Pericherla - Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Interactive Cursor Layers -->
-  <div id="liquid-glass-cursor"></div>
-  <canvas id="cursor-canvas-overlay"></canvas>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div id="nav-indicator"></div>
-    <ul class="nav-links">
-      <li><a href="#hero" class="active">VVP</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div class="title-bar-left">
+      <svg class="vsc-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <mask id="m">
+          <rect width="100" height="100" fill="white"/>
+          <path d="M70.5 5.5L70.5 94.5L5.5 67.5L5.5 32.5Z" fill="black"/>
+          <path d="M70.5 5.5L94.5 32.5L94.5 67.5L70.5 94.5Z" fill="white"/>
+          <path d="M35 50L70.5 20L70.5 80Z" fill="black"/>
+        </mask>
+        <rect width="100" height="100" rx="15" fill="#007ACC" mask="url(#m)"/>
+        <path d="M94.5 32.5L70.5 5.5L35 35L5.5 32.5L5.5 67.5L35 65L70.5 94.5L94.5 67.5Z" fill="white" mask="url(#m)" opacity="0.25"/>
+      </svg>
+      <span class="title-menu">File</span>
+      <span class="title-menu">Edit</span>
+      <span class="title-menu">Selection</span>
+      <span class="title-menu">View</span>
+      <span class="title-menu">Go</span>
+      <span class="title-menu">Run</span>
+      <span class="title-menu">Terminal</span>
+      <span class="title-menu">Help</span>
+    </div>
+    <div class="title-bar-center">
+      <span class="title-name">about_me.ts — vinay-portfolio — Visual Studio Code</span>
+    </div>
+    <div class="title-bar-right"></div>
+  </div>
 
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-      <div class="container hardware-accel">
-        <h1 class="hero-name reveal">Vinay Varma Pericherla</h1>
-        <div class="tagline-container reveal">
-          <span id="typewriter"></span><span class="cursor-bar">|</span>
+  <div class="vscode-body">
+
+    <!-- Activity Bar -->
+    <div class="activity-bar">
+      <div class="activity-top">
+        <!-- Explorer -->
+        <button class="activity-btn active" title="Explorer">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.5 0H8.5L7 1.5v5H2L0 8.5v14.07L1.5 24h13.07L16 22.57V18h4.93L22.5 16.5v-12zm0 1.5l3 3H17.5zM14.57 22.5H1.5V8.5H7v8.07L8.5 18h6.07zm4.93-6H8.5V1.5H16v5h4.07v10z"/></svg>
+        </button>
+        <!-- Search -->
+        <button class="activity-btn" title="Search">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M15.25 0a8.25 8.25 0 0 0-6.18 13.72L1 22.88l1.12 1.12 8.06-8.06A8.25 8.25 0 1 0 15.25 0zm0 15a6.75 6.75 0 1 1 0-13.5 6.75 6.75 0 0 1 0 13.5z"/></svg>
+        </button>
+        <!-- Source Control -->
+        <button class="activity-btn" title="Source Control">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M21.007 8.222A3.738 3.738 0 0 0 15.045 5.2a3.737 3.737 0 0 0 1.156 6.583 2.988 2.988 0 0 1-2.668 1.67h-2.99a4.456 4.456 0 0 0-2.989 1.165V7.4a3.737 3.737 0 1 0-1.494 0v9.117a3.776 3.776 0 1 0 1.816.099 2.99 2.99 0 0 1 2.667-1.617h2.99a4.484 4.484 0 0 0 4.223-3.268 3.738 3.738 0 0 0 3.25-3.509zM4.565 3.738a2.242 2.242 0 1 1 4.484 0 2.242 2.242 0 0 1-4.484 0zm4.484 16.441a2.242 2.242 0 1 1-4.484 0 2.242 2.242 0 0 1 4.484 0zm8.221-9.715a2.242 2.242 0 1 1 0-4.485 2.242 2.242 0 0 1 0 4.485z"/></svg>
+        </button>
+        <!-- Extensions -->
+        <button class="activity-btn" title="Extensions">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.47 9.47l-3-3 .53-.53a2.49 2.49 0 0 0 0-3.53 2.49 2.49 0 0 0-3.53 0L9.94 3.94 6.53.53A1.81 1.81 0 0 0 5.24 0a1.81 1.81 0 0 0-1.29.53L.53 3.95A1.81 1.81 0 0 0 0 5.24a1.81 1.81 0 0 0 .53 1.29l3.41 3.41-.53.53a2.49 2.49 0 0 0 0 3.53 2.49 2.49 0 0 0 3.53 0l.53-.53 3 3a1.81 1.81 0 0 0 1.29.53 1.81 1.81 0 0 0 1.29-.53l3.41-3.41a1.81 1.81 0 0 0 .53-1.29 1.81 1.81 0 0 0-.53-1.3zm-1.06 2.59l-3.41 3.41-3.53-3.53-2.12 2.12a1 1 0 0 1-1.41-1.41l2.12-2.12L4.53 7 7.94 3.59l3.53 3.53 2.12-2.12a1 1 0 0 1 1.41 1.41l-2.12 2.12 3.53 3.53z"/></svg>
+        </button>
+      </div>
+      <div class="activity-bottom">
+        <button class="activity-btn" title="GitHub" onclick="window.open('https://github.com/vinayvarmap','_blank')">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </button>
+        <button class="activity-btn" title="LinkedIn" onclick="window.open('https://linkedin.com/in/vinayvarmapericherla','_blank')">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </button>
+        <button class="activity-btn" title="Settings">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-title">EXPLORER</div>
+
+      <!-- Open Editors -->
+      <div class="tree-section">
+        <div class="tree-section-header" data-target="open-editors-body">
+          <i class="fas fa-chevron-down tree-chevron"></i>
+          <span>OPEN EDITORS</span>
         </div>
-        <h3 class="subtitle reveal" style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 2.5rem;">
-          MS Computer Science @ Syracuse University
-        </h3>
-        <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="https://www.linkedin.com/in/pericherlavv" target="_blank" class="btn btn-outline">LinkedIn</a>
-          <a href="https://github.com/vinay0304" target="_blank" class="btn btn-outline">GitHub</a>
-        </div>
-        <div class="scroll-arrow highlight">
-          <i data-lucide="arrow-down"></i>
+        <div class="tree-section-body" id="open-editors-body">
+          <div class="tree-file active-file" data-section="about">
+            <span class="file-dot">●</span>
+            <i class="fas fa-file-code icon-ts"></i>
+            <span>about_me.ts</span>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-      <div class="container about-wrapper">
-        <h2 class="section-title reveal">About Me</h2>
-        <div class="about-grid reveal">
-          <div class="about-visual">
-            <div class="avatar-blob">
-               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay" alt="Vinay Varma">
+      <!-- Portfolio tree -->
+      <div class="tree-section">
+        <div class="tree-section-header" data-target="portfolio-body">
+          <i class="fas fa-chevron-down tree-chevron"></i>
+          <span>PORTFOLIO</span>
+        </div>
+        <div class="tree-section-body" id="portfolio-body">
+
+          <div class="tree-folder-row" data-target="folder-next">
+            <i class="fas fa-chevron-right folder-chevron"></i>
+            <i class="fas fa-folder icon-folder"></i>
+            <span>.next</span>
+          </div>
+          <div class="tree-folder-children hidden" id="folder-next"></div>
+
+          <div class="tree-folder-row" data-target="folder-node">
+            <i class="fas fa-chevron-right folder-chevron"></i>
+            <i class="fas fa-folder icon-folder"></i>
+            <span>node_modules</span>
+          </div>
+          <div class="tree-folder-children hidden" id="folder-node"></div>
+
+          <div class="tree-folder-row" data-target="folder-public">
+            <i class="fas fa-chevron-right folder-chevron"></i>
+            <i class="fas fa-folder icon-folder"></i>
+            <span>public</span>
+          </div>
+          <div class="tree-folder-children hidden" id="folder-public"></div>
+
+          <div class="tree-file sidebar-nav" data-section="about">
+            <i class="fas fa-file-code icon-ts"></i>
+            <span>about_me.ts</span>
+          </div>
+
+          <!-- src folder open -->
+          <div class="tree-folder-row open" data-target="folder-src">
+            <i class="fas fa-chevron-down folder-chevron"></i>
+            <i class="fas fa-folder-open icon-folder"></i>
+            <span>src</span>
+          </div>
+          <div class="tree-folder-children" id="folder-src">
+            <div class="tree-file sidebar-nav indent" data-section="about">
+              <i class="fas fa-file-code icon-ts"></i>
+              <span>about_me.ts</span>
+            </div>
+            <div class="tree-file sidebar-nav indent" data-section="experience">
+              <i class="fas fa-file-code icon-ts"></i>
+              <span>experience.ts</span>
+            </div>
+            <div class="tree-file sidebar-nav indent" data-section="skills">
+              <i class="fas fa-file-code icon-ts"></i>
+              <span>skills.ts</span>
+            </div>
+            <div class="tree-file sidebar-nav indent" data-section="projects">
+              <i class="fas fa-file-code icon-ts"></i>
+              <span>projects.ts</span>
+            </div>
+            <div class="tree-file sidebar-nav indent" data-section="contact">
+              <i class="fas fa-file-code icon-ts"></i>
+              <span>contact.ts</span>
             </div>
           </div>
-          <div class="about-text">
-            <p class="bio highlight-text">
-              Passionate software engineer with 2+ years of industry experience at **Tata Consultancy Services**, building enterprise-grade microservices, cloud-native applications, and security systems processing millions of daily requests. Currently pursuing **MS in Computer Science at Syracuse University** with a 3.8 GPA, specializing in distributed systems and network security. 
-            </p>
-            <div class="skills-stagger stagger-in">
-              <div class="skill-cat">
-                <h4>Languages</h4>
-                <div class="tags">
-                   <span>Python</span><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>Go</span><span>C++</span><span>Kotlin</span>
+
+          <div class="tree-file">
+            <i class="fas fa-file-alt icon-json"></i>
+            <span>.eslintrc.json</span>
+          </div>
+          <div class="tree-file">
+            <i class="fas fa-file icon-git"></i>
+            <span>.gitignore</span>
+          </div>
+          <div class="tree-file">
+            <i class="fas fa-file-code icon-js"></i>
+            <span>vite.config.js</span>
+          </div>
+          <div class="tree-file">
+            <i class="fas fa-file-alt icon-json"></i>
+            <span>package.json</span>
+          </div>
+          <div class="tree-file">
+            <i class="fas fa-file-code icon-ts"></i>
+            <span>tsconfig.json</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outline -->
+      <div class="tree-section">
+        <div class="tree-section-header collapsed" data-target="outline-body">
+          <i class="fas fa-chevron-right tree-chevron"></i>
+          <span>OUTLINE</span>
+        </div>
+        <div class="tree-section-body hidden" id="outline-body">
+          <div class="tree-file sidebar-nav" data-section="about"><span>About Me</span></div>
+          <div class="tree-file sidebar-nav" data-section="experience"><span>Work Experience</span></div>
+          <div class="tree-file sidebar-nav" data-section="skills"><span>Skills</span></div>
+          <div class="tree-file sidebar-nav" data-section="projects"><span>My Work</span></div>
+          <div class="tree-file sidebar-nav" data-section="contact"><span>Contact Me</span></div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="tree-section">
+        <div class="tree-section-header collapsed" data-target="timeline-body">
+          <i class="fas fa-chevron-right tree-chevron"></i>
+          <span>TIMELINE</span>
+        </div>
+        <div class="tree-section-body hidden" id="timeline-body"></div>
+      </div>
+
+    </div><!-- end sidebar -->
+
+    <!-- Editor Area -->
+    <div class="editor-area">
+
+      <!-- Tabs -->
+      <div class="tabs-bar">
+        <div class="tab active" data-section="about">
+          <i class="fas fa-file-code icon-ts"></i>
+          <span>about_me.ts</span>
+          <button class="tab-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="tab" data-section="experience">
+          <i class="fas fa-file-code icon-ts"></i>
+          <span>experience.ts</span>
+          <button class="tab-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="tab" data-section="skills">
+          <i class="fas fa-file-code icon-ts"></i>
+          <span>skills.ts</span>
+          <button class="tab-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="tab" data-section="projects">
+          <i class="fas fa-file-code icon-ts"></i>
+          <span>projects.ts</span>
+          <button class="tab-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="tab" data-section="contact">
+          <i class="fas fa-file-code icon-ts"></i>
+          <span>contact.ts</span>
+          <button class="tab-close"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <span class="bc-item">src</span>
+        <i class="fas fa-chevron-right bc-sep"></i>
+        <span class="bc-item" id="bc-file">about_me.ts</span>
+      </div>
+
+      <!-- Scrollable page — all sections stacked -->
+      <div class="editor-scroll" id="editor-scroll">
+
+        <!-- Line numbers + content wrapper -->
+        <div class="editor-inner">
+          <div class="line-numbers" id="line-numbers"></div>
+
+          <div class="editor-content">
+
+            <!-- ===== ABOUT (hero = page 1, fills viewport) ===== -->
+            <section id="section-about" class="section section-hero">
+              <div class="hero reveal">
+                <h1>Vinay Varma Pericherla <span class="wave">👋</span></h1>
+                <p class="hero-role"><span id="typed-role"></span><span class="typed-cursor">|</span></p>
+                <p class="hero-desc">
+                  Software Engineer with 3+ years of experience in C#, JavaScript and cloud-native technologies.
+                  Skilled in distributed systems, serverless solutions on AWS, and full SDLC delivery.
+                </p>
+                <div class="btn-row">
+                  <a href="https://github.com/vinayvarmap" target="_blank" class="btn btn-ghost">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    GitHub
+                  </a>
+                  <a href="https://linkedin.com/in/vinayvarmapericherla" target="_blank" class="btn btn-ghost">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </a>
+                  <a href="mailto:vinayvarmap34@gmail.com" class="btn btn-solid">Contact Me</a>
                 </div>
               </div>
-              <div class="skill-cat">
-                <h4>Cloud & Platform</h4>
-                <div class="tags">
-                   <span>AWS</span><span>GCP</span><span>Azure</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span>
+            </section>
+
+            <!-- ===== ABOUT ME (page 2 — appears on scroll) ===== -->
+            <section id="section-about-detail" class="section">
+              <p class="code-comment reveal">// About Me</p>
+              <p class="section-sub reveal">Software Engineer · San Jose, CA</p>
+
+              <div class="about-grid reveal-children">
+                <div class="card">
+                  <h3 class="card-name">Vinay Varma Pericherla</h3>
+                  <p class="card-role">Software Engineer</p>
+                  <p class="card-body">
+                    Software Engineer with over 3 years of hands-on development experience in C#, JavaScript and
+                    cloud-native technologies. Skilled in full SDLC, designing distributed systems and serverless
+                    solutions on AWS to drive real-time data processing and reduce manual overhead. Proven
+                    collaborator in agile teams and code reviews, ensuring best practices for reliability and performance.
+                  </p>
+                  <div class="lang-list">
+                    <div class="lang-row"><span class="lang-name">English</span><span class="lang-sep">—</span><span class="lang-level">Fluent</span></div>
+                    <div class="lang-row"><span class="lang-name">Telugu</span><span class="lang-sep">—</span><span class="lang-level">Native</span></div>
+                    <div class="lang-row"><span class="lang-name">Hindi</span><span class="lang-sep">—</span><span class="lang-level">Proficient</span></div>
+                  </div>
+                  <div class="btn-row" style="margin-top:1.5rem">
+                    <a href="https://github.com/vinayvarmap" target="_blank" class="btn btn-ghost">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                      GitHub
+                    </a>
+                    <a href="mailto:vinayvarmap34@gmail.com" class="btn btn-solid">Contact Me</a>
+                  </div>
+                </div>
+                <div class="card edu-card">
+                  <p class="edu-degree">M.P.S. in Software Engineering</p>
+                  <p class="edu-school">University of Maryland, Baltimore County</p>
+                  <p class="edu-year">Aug 2022 – Jun 2024 · Baltimore, MD</p>
+                  <p class="edu-degree" style="margin-top:16px;font-size:13px;">Certifications</p>
+                  <p class="edu-school" style="font-size:12px;margin-top:4px;">AWS Certified Developer Associate</p>
+                  <p class="edu-school" style="font-size:12px;">Oracle Certified Professional (Java SE)</p>
+                  <p class="edu-school" style="font-size:12px;">SAP Certified Development Associate</p>
+                  <p class="edu-school" style="font-size:12px;">Google Cloud Associate Engineer</p>
                 </div>
               </div>
-              <div class="skill-cat">
-                <h4>Backend</h4>
-                <div class="tags">
-                   <span>Node.js</span><span>Spring Boot</span><span>FastAPI</span><span>GraphQL</span><span>REST APIs</span><span>Microservices</span>
+            </section>
+
+            <!-- ===== EXPERIENCE ===== -->
+            <section id="section-experience" class="section">
+              <p class="code-comment reveal">// Work Experience</p>
+              <p class="section-sub reveal">Software Engineer with 3+ years building distributed systems and cloud-native solutions</p>
+              <div class="timeline reveal-children">
+                <div class="tl-item">
+                  <div class="tl-dot"></div>
+                  <div class="card tl-card">
+                    <div class="tl-head">
+                      <h3>Cisco &nbsp;|&nbsp; Software Engineer</h3>
+                      <span class="tl-date">Sep 2024 – Present · San Jose, CA</span>
+                    </div>
+                    <ul>
+                      <li>Engineered distributed data pipelines using AWS EMR and Spark with NoSQL databases to process 1.2TB of daily telemetry data, enabling real-time detection of network threats.</li>
+                      <li>Developed full-stack features in C# and JavaScript for internal network monitoring tools, collaborating in design reviews to ensure scalable and maintainable implementations.</li>
+                      <li>Architected serverless solutions using AWS Lambda, SQS, and Fargate to automate vendor data onboarding and security auditing, reducing manual overhead by 25%.</li>
+                      <li>Led architecture and code reviews of .NET backend services in C#, maintaining 99.9% uptime for mission-critical defensive applications.</li>
+                      <li>Conducted system resilience testing and vulnerability assessments on critical security libraries across distributed cloud environments.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-dot"></div>
+                  <div class="card tl-card">
+                    <div class="tl-head">
+                      <h3>Humana (Tata Consultancy Services) &nbsp;|&nbsp; Associate Software Engineer</h3>
+                      <span class="tl-date">Aug 2021 – Aug 2022 · Hyderabad, India</span>
+                    </div>
+                    <ul>
+                      <li>Architected scalable backend microservices for healthcare data management on SAP BTP, implementing automated enrollment workflows that processed 15,000+ clinical records.</li>
+                      <li>Optimized distributed data processing layers and integrated NoSQL solutions, reducing data retrieval latency to under 300ms for high-volume customer datasets.</li>
+                      <li>Contributed to the full SDLC for cloud-native services, participating in design reviews and conducting peer code reviews to enforce best practices.</li>
+                      <li>Collaborated with cross-disciplinary security teams to troubleshoot complex production issues and implement architectural fixes to enhance system resilience.</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div class="skill-cat">
-                <h4>Databases</h4>
-                <div class="tags">
-                   <span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Cassandra</span><span>DynamoDB</span>
+            </section>
+
+            <!-- ===== SKILLS ===== -->
+            <section id="section-skills" class="section">
+              <p class="code-comment reveal">// Skills</p>
+              <p class="section-sub reveal">Distributed systems, cloud-native engineering, and full-stack development</p>
+
+              <div class="skill-tabs">
+                <button class="sk-tab active" data-cat="all">All</button>
+                <button class="sk-tab" data-cat="languages">Languages</button>
+                <button class="sk-tab" data-cat="cloud">Cloud &amp; Infra</button>
+                <button class="sk-tab" data-cat="tools">Tools</button>
+                <button class="sk-tab" data-cat="concepts">Concepts</button>
+              </div>
+
+              <div class="skills-grid reveal" id="skills-grid">
+                <!-- Languages -->
+                <div class="sk-card" data-cat="languages"><i class="fab fa-java sk-icon" style="color:#f89820"></i><span>Java</span></div>
+                <div class="sk-card" data-cat="languages"><i class="fab fa-python sk-icon" style="color:#3776ab"></i><span>Python</span></div>
+                <div class="sk-card" data-cat="languages"><span class="sk-text" style="color:#9b59b6">C#</span><span>C#</span></div>
+                <div class="sk-card" data-cat="languages"><span class="sk-text" style="color:#00add8">Go</span><span>Go</span></div>
+                <div class="sk-card" data-cat="languages"><i class="fab fa-js sk-icon" style="color:#f7df1e"></i><span>JavaScript</span></div>
+                <div class="sk-card" data-cat="languages"><span class="sk-text" style="color:#3178c6">TS</span><span>TypeScript</span></div>
+                <div class="sk-card" data-cat="languages"><span class="sk-text" style="color:#336791">SQL</span><span>PostgreSQL</span></div>
+                <div class="sk-card" data-cat="languages"><span class="sk-text" style="color:#e25a1c">Sc</span><span>Scala</span></div>
+                <!-- Cloud & Infra -->
+                <div class="sk-card" data-cat="cloud"><i class="fab fa-aws sk-icon" style="color:#ff9900"></i><span>AWS</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#e25a1c">EMR</span><span>AWS EMR</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#ff9900">λ</span><span>Lambda</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#ff9900">SQS</span><span>SQS</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#ff9900">ECS</span><span>AWS ECS</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#e25a1c">Sp</span><span>Spark</span></div>
+                <div class="sk-card" data-cat="cloud"><i class="fab fa-docker sk-icon" style="color:#2496ed"></i><span>Docker</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#7b42bc">Tf</span><span>Terraform</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#47a248">M</span><span>NoSQL</span></div>
+                <div class="sk-card" data-cat="cloud"><span class="sk-text" style="color:#ccc">🐧</span><span>Linux</span></div>
+                <!-- Tools -->
+                <div class="sk-card" data-cat="tools"><i class="fab fa-git-alt sk-icon" style="color:#f05033"></i><span>Git</span></div>
+                <div class="sk-card" data-cat="tools"><span class="sk-text" style="color:#d24939">Jk</span><span>Jenkins</span></div>
+                <div class="sk-card" data-cat="tools"><span class="sk-text" style="color:#2088ff">CI/CD</span><span>CI/CD</span></div>
+                <div class="sk-card" data-cat="tools"><span class="sk-text" style="color:#f05033">Sp</span><span>Splunk</span></div>
+                <div class="sk-card" data-cat="tools"><span class="sk-text" style="color:#00a1e0">Dt</span><span>DynaTrace</span></div>
+                <div class="sk-card" data-cat="tools"><span class="sk-text" style="color:#0052cc">Ag</span><span>Agile/Scrum</span></div>
+                <!-- Concepts -->
+                <div class="sk-card" data-cat="concepts"><span class="sk-text" style="color:#9cdcfe">DS</span><span>Distributed Systems</span></div>
+                <div class="sk-card" data-cat="concepts"><span class="sk-text" style="color:#4ec9b0">μS</span><span>Microservices</span></div>
+                <div class="sk-card" data-cat="concepts"><span class="sk-text" style="color:#dcdcaa">DSA</span><span>DSA</span></div>
+                <div class="sk-card" data-cat="concepts"><span class="sk-text" style="color:#569cd6">SD</span><span>System Design</span></div>
+              </div>
+            </section>
+
+            <!-- ===== PROJECTS ===== -->
+            <section id="section-projects" class="section">
+              <p class="code-comment reveal">// My Work</p>
+              <p class="section-sub reveal">Projects from <a href="https://github.com/vinay0304" target="_blank" style="color:var(--accent)">github.com/vinay0304</a></p>
+              <div class="projects-grid reveal-children">
+
+                <div class="project-card">
+                  <div class="proj-thumb p1"></div>
+                  <div class="proj-body">
+                    <h3>Distributed File Storage System</h3>
+                    <p>Fault-tolerant distributed key-value store in Go using gRPC, consistent hashing with virtual nodes, and primary-backup replication. Handles 500+ concurrent requests at sub-millisecond latency.</p>
+                    <div class="proj-tags"><span>Go</span><span>gRPC</span><span>Protocol Buffers</span><span>Docker</span><span>Consistent Hashing</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/Distributed-File-Storage-System" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-card">
+                  <div class="proj-thumb p2"></div>
+                  <div class="proj-body">
+                    <h3>Real-Time Sentiment Analysis Engine</h3>
+                    <p>Live tweet ingestion pipeline using Kafka producer/consumer, Spark Streaming for processing, MongoDB for persistence, and a Flask dashboard for real-time sentiment visualization.</p>
+                    <div class="proj-tags"><span>Python</span><span>Kafka</span><span>Spark</span><span>MongoDB</span><span>Flask</span><span>Twitter API</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/SENG691-DataIntensiveAppilicationsProject" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-card">
+                  <div class="proj-thumb p3"></div>
+                  <div class="proj-body">
+                    <h3>ML Course Predictor</h3>
+                    <p>Predicts graduate course suitability and admission chances from academic profiles using ensemble ML models and semantic similarity via Sentence-Transformers. Interactive Streamlit UI.</p>
+                    <div class="proj-tags"><span>Python</span><span>Scikit-learn</span><span>Sentence-Transformers</span><span>Streamlit</span><span>Pandas</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/Course-Predictor-ML" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-card">
+                  <div class="proj-thumb p4"></div>
+                  <div class="proj-body">
+                    <h3>AI Operations Dashboard</h3>
+                    <p>Interactive analytics dashboard for monitoring AI model performance, costs, and resource utilization. Features KPI tracking, latency trend charts, automated anomaly detection, and CPU/GPU monitoring.</p>
+                    <div class="proj-tags"><span>Python</span><span>Streamlit</span><span>Plotly</span><span>SQLite</span><span>Pandas</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/AI-Operations-Dashboard" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-card">
+                  <div class="proj-thumb p5"></div>
+                  <div class="proj-body">
+                    <h3>Gym Logger</h3>
+                    <p>Full-featured workout tracking app to log exercises, sets, weights, and reps. Categorized by muscle group with progress history, edit support, and password-protected data reset.</p>
+                    <div class="proj-tags"><span>Python</span><span>Streamlit</span><span>Pandas</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/gym-logger" target="_blank"><i class="fab fa-github"></i> Code</a>
+                      <a href="https://gym-logger.streamlit.app" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-card">
+                  <div class="proj-thumb p6"></div>
+                  <div class="proj-body">
+                    <h3>Gym Logger BETA</h3>
+                    <p>Next iteration of the Gym Logger with enhanced features and improved UX. Built with Python and Streamlit for a seamless workout tracking experience.</p>
+                    <div class="proj-tags"><span>Python</span><span>Streamlit</span><span>Pandas</span></div>
+                    <div class="proj-links">
+                      <a href="https://github.com/vinay0304/Gym-logger-BETA" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- ===== CONTACT ===== -->
+            <section id="section-contact" class="section">
+              <p class="code-comment reveal">// Contact Me</p>
+              <p class="section-sub reveal">Get in touch and let's work together</p>
+              <div class="contact-grid reveal">
+                <form class="contact-form" id="contact-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" placeholder="Your name" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" placeholder="your@email.com" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" placeholder="Your company" />
+                  </div>
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="6" placeholder="Your message..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-solid">Send</button>
+                </form>
+
+                <div class="contact-links card">
+                  <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:vinayvarmap34@gmail.com">vinayvarmap34@gmail.com</a>
+                  </div>
+                  <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.61 21 3 14.39 3 6a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                    <a href="tel:4434532040">443-453-2040</a>
+                  </div>
+                  <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    <a href="https://github.com/vinayvarmap" target="_blank">github.com/vinayvarmap</a>
+                  </div>
+                  <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <a href="https://linkedin.com/in/vinayvarmapericherla" target="_blank">linkedin.com/in/vinayvarmapericherla</a>
+                  </div>
+                  <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>San Jose, CA</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-      <div class="container">
-        <h2 class="section-title reveal">Professional Experience</h2>
-        <div class="timeline reveal">
-          <!-- TCS Entry -->
-          <div class="timeline-item left">
-            <div class="glass-card exp-card">
-              <div class="exp-header">
-                <h3>Systems Engineer</h3>
-                <span class="company">Tata Consultancy Services</span>
-                <span class="period">July 2021 – July 2023 · Hyderabad</span>
-              </div>
-              <ul class="points">
-                <li>Architected microservices on AWS reducing system latency by 40% for 500K+ users</li>
-                <li>Built secure REST APIs processing 2M+ daily requests with OAuth2 and JWT</li>
-                <li>Automated CI/CD pipelines with Jenkins and Docker cutting deployment time by 60%</li>
-                <li>Led a team of 4 engineers delivering a cloud migration 2 weeks ahead of schedule</li>
-                <li>Implemented Apache Kafka event streaming handling 500K events/day</li>
-                <li>Reduced cloud infra costs by 25% through auto-scaling and resource optimization</li>
-              </ul>
-            </div>
-          </div>
-          <!-- Syracuse Entry -->
-          <div class="timeline-item right">
-            <div class="glass-card exp-card">
-              <div class="exp-header">
-                <h3>Graduate Research & Teaching Assistant</h3>
-                <span class="company">Syracuse University</span>
-                <span class="period">August 2023 – Present · Syracuse, NY</span>
-              </div>
-              <ul class="points">
-                <li>MS Computer Science — GPA 3.8/4.0</li>
-                <li>Coursework: Distributed Systems, Cloud Computing, Network Security, Advanced Algorithms</li>
-                <li>Research Assistant on distributed consensus algorithm optimizations (Raft/Paxos)</li>
-                <li>Teaching Assistant for Introduction to Programming — 200+ students</li>
-                <li>Active member of ACM Chapter and Cybersecurity Club</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </div><!-- editor-content -->
+        </div><!-- editor-inner -->
+      </div><!-- editor-scroll -->
 
-    <!-- Projects Section -->
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title reveal">Featured Projects</h2>
-        <div class="projects-grid">
-          <!-- 1. Enterprise Reporting Portal -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--primary);">
-            <div class="badge-row"><span class="badge blue">Enterprise</span></div>
-            <h3>Enterprise Reporting Portal</h3>
-            <p>Full-stack reporting platform in C# with RBAC, real-time dashboards, and automated scheduling. Supports 10+ report types.</p>
-            <div class="tags"><span>C#</span><span>.NET</span><span>SQL Server</span><span>Azure</span></div>
-            <a href="https://github.com/vinay0304/Enterprise-reporting-portal" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
+    </div><!-- editor-area -->
+  </div><!-- vscode-body -->
 
-          <!-- 2. Course Predictor ML -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--amber);">
-            <div class="badge-row"><span class="badge amber">Machine Learning</span></div>
-            <h3>Course Predictor ML</h3>
-            <p>ML model that predicts optimal course selections based on academic history and performance. 87% accuracy.</p>
-            <div class="tags"><span>Python</span><span>scikit-learn</span><span>Flask</span><span>PostgreSQL</span></div>
-            <a href="https://github.com/vinay0304/Course-Predictor-ML" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-left">
+      <span class="st-item st-branch">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M11.75 2.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zm.75 1.5a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5zM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zM3.25 5a1.75 1.75 0 1 1 0-3.5A1.75 1.75 0 0 1 3.25 5zm0 8.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zM3.25 15a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5zM4 7.25A.25.25 0 0 1 4.25 7h1a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-1A.25.25 0 0 1 4 8.75v-1.5zM4.25 6a1.25 1.25 0 0 0 0 2.5h1a1.25 1.25 0 0 0 0-2.5h-1z"/><path d="M3.25 4.75a.25.25 0 0 1 .25.25v4.5a.25.25 0 0 1-.5 0V5a.25.25 0 0 1 .25-.25zm8.5-1.5a.25.25 0 0 1 .25.25v2.5a.25.25 0 0 1-.5 0v-2.5a.25.25 0 0 1 .25-.25zm-8.5 7a.25.25 0 0 1 .25.25v2a.25.25 0 0 1-.5 0v-2a.25.25 0 0 1 .25-.25z"/></svg>
+        main*
+      </span>
+      <span class="st-item">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+        0
+      </span>
+      <span class="st-item">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+        0
+      </span>
+    </div>
+    <div class="status-right">
+      <span class="st-item">Spaces: 2</span>
+      <span class="st-item">UTF-8</span>
+      <span class="st-item">CRLF</span>
+      <span class="st-item">{ } TypeScript JSX</span>
+      <span class="st-item st-live">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><circle cx="8" cy="8" r="4"/></svg>
+        Go Live
+      </span>
+      <span class="st-item">Vinay Varma</span>
+    </div>
+  </div>
 
-          <!-- 3. Enterprise Data Access Platform -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--accent);">
-            <div class="badge-row"><span class="badge violet">Backend</span></div>
-            <h3>Data Access Platform</h3>
-            <p>Secure data access platform in Kotlin with fine-grained permission controls and audit logging for enterprise governance.</p>
-            <div class="tags"><span>Kotlin</span><span>Spring Boot</span><span>Docker</span><span>K8s</span></div>
-            <a href="https://github.com/vinay0304/Enterprise-Data-Access-Platform" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-
-          <!-- 4. Risk Analytics Dashboard -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--cyan);">
-            <div class="badge-row"><span class="badge cyan">Analytics</span></div>
-            <h3>Risk Analytics Dashboard</h3>
-            <p>Platform aggregating financial data, performing statistical modeling, and visualizing exposure via D3.js.</p>
-            <div class="tags"><span>Python</span><span>FastAPI</span><span>Redis</span><span>D3.js</span></div>
-            <a href="https://github.com/vinay0304/Risk-Analytics-Dashboard" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-
-          <!-- 5. AI Operations Dashboard -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--primary);">
-            <div class="badge-row"><span class="badge blue">AI/ML</span></div>
-            <h3>AI Operations Dashboard</h3>
-            <p>Intelligent operations monitoring platform using AI to detect anomalies and automate incident response.</p>
-            <div class="tags"><span>Python</span><span>TensorFlow</span><span>Kafka</span><span>InfluxDB</span></div>
-            <a href="https://github.com/vinay0304/AI-Operations-Dashboard" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-
-          <!-- 6. Distributed File Storage -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--accent);">
-            <div class="badge-row"><span class="badge violet">Distributed Systems</span></div>
-            <h3>Distributed Storage</h3>
-            <p>Fault-tolerant system in Go implementing consistent hashing, replication, and automatic failover (HDFS inspired).</p>
-            <div class="tags"><span>Go</span><span>gRPC</span><span>Consistent Hashing</span><span>Raft</span></div>
-            <a href="https://github.com/vinay0304/Distributed-File-Storage-System" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-
-          <!-- 7. Gym Logger -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--amber);">
-            <div class="badge-row"><span class="badge amber">Full Stack</span></div>
-            <h3>Gym Logger</h3>
-            <p>Workout tracking app with exercise logging, personal records, and AI-powered recommendations.</p>
-            <div class="tags"><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>Chart.js</span></div>
-            <a href="https://github.com/vinay0304/gym-logger" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-
-          <!-- 8. SENG691 Data Intensive Apps -->
-          <div class="glass-card project-card reveal" style="--card-glow: var(--cyan);">
-            <div class="badge-row"><span class="badge blue">Research</span></div>
-            <h3>Data Intensive Applications</h3>
-            <p>Research project exploring CAP theorem trade-offs, stream processing, and CAP benchmarks.</p>
-            <div class="tags"><span>Spark</span><span>Kafka</span><span>Cassandra</span><span>HDFS</span></div>
-            <a href="https://github.com/vinay0304/SENG691-DataIntensiveAppilicationsProject" target="_blank" class="btn-sm"><i data-lucide="github"></i> Repository</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <div class="glass-card contact-wrapper reveal">
-          <h2 class="section-title">Get In Touch</h2>
-          <form id="contact-form">
-            <div class="input-row">
-              <input type="text" placeholder="Name" required>
-              <input type="email" placeholder="Email" required>
-            </div>
-            <textarea placeholder="Message" rows="5" required></textarea>
-            <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
-          </form>
-          <div class="social-footer">
-            <a href="https://github.com/vinay0304" target="_blank"><i data-lucide="github"></i></a>
-            <a href="https://www.linkedin.com/in/pericherlavv" target="_blank"><i data-lucide="linkedin"></i></a>
-            <a href="mailto:vinayvarmap34@gmail.com"><i data-lucide="mail"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>Built by Vinay Varma Pericherla · 2024</p>
-  </footer>
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="assets/js/script.js"></script>
 </body>
 </html>
